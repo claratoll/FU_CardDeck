@@ -1,17 +1,17 @@
 package com.example.carddeck
 
-object DataManager {
+object Deck {
 
     val cards = mutableListOf<Card>()
 
 
     init {
-        createMockData()
+        createCards()
     }
 
     //shared preferences
 
-    fun createMockData(){
+    fun createCards(){
         //clubs
         cards.add(Card("Clubs Ace", 1, R.drawable.clubsace))
         cards.add(Card("Clubs two", 2, R.drawable.clubs_2))
