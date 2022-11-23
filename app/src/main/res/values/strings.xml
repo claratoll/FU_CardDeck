@@ -7,4 +7,7 @@
     <string name="won_lost">You guessed correct</string>
     <string name="finished_play_again">And you finished this round.</string>
     <string name="play_again">Do you want to play again?</string>
+    <string name="smaller">smaller</string>
+    <string name="larger">larger</string>
+    <string name="larger_or_smaller">Larger or smaller?</string>
 </resources>
