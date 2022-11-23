@@ -38,7 +38,7 @@ class CardsRecyclerAdapter (val context : Context, val cards : List <Card>) : Re
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val imageView = itemView.findViewById<ImageView>(R.id.imageView)
+        val imageView = itemView.findViewById<ImageView>(R.id.cardImageView)
         val largerButton = itemView.findViewById<Button>(R.id.largerButton)
         val smallerButton = itemView.findViewById<Button>(R.id.smallerButton)
 

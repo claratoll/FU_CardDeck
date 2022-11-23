@@ -20,6 +20,8 @@ class PlayActivity : AppCompatActivity() {
 
     private lateinit var cardImageView: ImageView
 
+    private lateinit var recyclerView: RecyclerView
+
 
 
 
@@ -28,11 +30,17 @@ class PlayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_play)
 
 
+        recyclerView = findViewById(R.id.recyclerView)
 
-        cardText = findViewById(R.id.currentCard)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = CardsRecyclerAdapter(this, DataManager.cards)
+
+
+
+/*        cardText = findViewById(R.id.currentCard)
         largerButton = findViewById(R.id.largerButton)
         smallerButton = findViewById(R.id.smallerButton)
-        cardImageView = findViewById(R.id.cardImageView)
+        cardImageView = findViewById(R.id.cardImageView)*/
 
 
         val position = 1
@@ -40,7 +48,7 @@ class PlayActivity : AppCompatActivity() {
         //lateinit var nextCard
 
 //        createCard()
-
+/*
         largerButton.setOnClickListener {
             checkIfNextCardIsLargerOrSmaller()
             DataManager.cards[position].name = cardText.text.toString()
@@ -49,7 +57,7 @@ class PlayActivity : AppCompatActivity() {
         smallerButton.setOnClickListener{
             checkIfNextCardIsLargerOrSmaller()
 
-        }
+        }*/
     }
 
 
@@ -62,7 +70,7 @@ class PlayActivity : AppCompatActivity() {
         
         val currentCard = DataManager.createMockData()
 
-        cardImageView.setImageResource(currentCard)
+     //   cardImageView.setImageResource(currentCard)
 
 
 
