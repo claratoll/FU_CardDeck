@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-
+import kotlin.random.Random
 
 
 class CardsRecyclerAdapter (val context : Context, val cards : List <Card>) : RecyclerView.Adapter<CardsRecyclerAdapter.ViewHolder>() {
@@ -23,7 +23,7 @@ class CardsRecyclerAdapter (val context : Context, val cards : List <Card>) : Re
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val card = cards[position]
+       // val card = cards[position]
 
        // holder.imageView.setImageResource(card.picture)
 
@@ -33,20 +33,40 @@ class CardsRecyclerAdapter (val context : Context, val cards : List <Card>) : Re
     override fun getItemCount() = cards.size
 
 
+    fun randomNextCard(): Int {
+        return (1..13).random()
+    }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val imageView = itemView.findViewById<ImageView>(R.id.imageView)
+        val imageView = itemView.findViewById<ImageView>(R.id.cardImageView)
         val largerButton = itemView.findViewById<Button>(R.id.largerButton)
         val smallerButton = itemView.findViewById<Button>(R.id.smallerButton)
 
 
+        var points = 0
+        val randomCardNumber = randomNextCard()
+        val nextValue = 14
 
 
         init {
             largerButton.setOnClickListener {
+                if (nextValue > randomCardNumber){
+                    points++
+                } else {
+                    //loose
+                }
 
-                val nextValue : Int = DataManager.cards.size
+              //  val nextValue : Int = DataManager.cards.size
             }
+
+            smallerButton.setOnClickListener {
+                if (nextValue < randomCardNumber){
+                    points++
+                } else {
+                //loose
+                }
+            }
+
 
 
 
