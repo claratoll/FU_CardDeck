@@ -11,6 +11,8 @@ class PlayActivity : AppCompatActivity() {
 
     private lateinit var cardText : TextView
     private lateinit var showAnswer : TextView
+    private lateinit var showNextNumber : TextView
+    private lateinit var livesLeft : TextView
 
     private lateinit var largerButton : Button
     private lateinit var smallerButton : Button
@@ -18,6 +20,8 @@ class PlayActivity : AppCompatActivity() {
     private lateinit var cardImageView: ImageView
 
     private var points: Int = 0
+    private var lives: Int = 5
+
 
     val deck = Deck
 
@@ -40,68 +44,87 @@ class PlayActivity : AppCompatActivity() {
 
         cardText = findViewById(R.id.currentCard)
         showAnswer = findViewById(R.id.larger_smaller)
+        showNextNumber = findViewById(R.id.whatGuess)
+        livesLeft = findViewById(R.id.livesLeft)
 
         largerButton = findViewById(R.id.largerButton)
         smallerButton = findViewById(R.id.smallerButton)
 
         cardImageView = findViewById(R.id.cardImageView)
 
-        val currentCard = Deck.cards
-        val position = 1
-       // lateinit var currentCard
-        //lateinit var nextCard
+        val currentCard = randomNextNumber()
 
-//        createCard()
-
-        val smaller = 1
-        val larger = 2
 
         largerButton.setOnClickListener {
-
-            checkIfNextCardIsLargerOrSmaller(larger)
-
+            playGame(2, currentCard)
         }
         smallerButton.setOnClickListener{
-
-            checkIfNextCardIsLargerOrSmaller(smaller)
-
+            playGame(1, currentCard)
         }
+
     }
 
-    fun randomNextCard(): Int { return (1..13).random() }
+    fun randomNextNumber(): Int { return (1..13).random() }
+
+    private fun playGame(number: Int, currentCard: Int){
+
+        //start up game
+        val startCard = randomNextNumber()
+        var card = Deck.cards[startCard]
+        cardImageView.setImageResource(card.picture)
 
 
 
-    private fun checkIfNextCardIsLargerOrSmaller(number: Int) {
-        
+        var nextCard = randomNextNumber()
 
 
-        val randomCardNumber = randomNextCard()
-        val nextValue = 4
 
-        if (number == 1){
-            if (nextValue < randomCardNumber){
-                points++
-            } else {
-                //loose
-            }
-        } else if (number == 2){
-
-            if (nextValue > randomCardNumber){
-                points++
-            } else {
-                //loose
-            }
-
+        if (currentCard == nextCard){
+            nextCard = randomNextNumber()
         }
 
 
-        cardText.text = points.toString()
+
+        card = Deck.cards[currentCard]
+
+        cardImageView.setImageResource(card.picture)
+
+        checkIfNextCardIsLargerOrSmaller(number, nextCard, currentCard)
+
+
+
+    }
+
+
+    private fun checkIfNextCardIsLargerOrSmaller(number: Int, nextCard: Int, currentCard: Int) {
+
+
+        if (number == 1) {
+            if (nextCard < currentCard) {
+                points++
+            } else {
+                lives--
+            }
+        }
+
+        if (number == 2) {
+            if (nextCard > currentCard) {
+                points++
+            } else {
+                lives--
+            }
+        }
+
+
+        cardText.text = "you have $points points"
+        livesLeft.text = "you have $lives lives left"
 
         //fixa så den hämtar alla kort istället
-        cardImageView.setImageResource(Deck.cards[randomCardNumber].picture)
+        //cardImageView.setImageResource(Deck.cards[randomCardNumber].picture)
 
-        showAnswer.text = randomCardNumber.toString()
+        showNextNumber.text = "the next value is $nextCard"
+        showAnswer.text = "the current value is $currentCard"
+
 
     }
 
