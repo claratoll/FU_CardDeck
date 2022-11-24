@@ -3,11 +3,14 @@ package com.example.carddeck
 object Deck {
 
     val cards = mutableListOf<Card>()
+    lateinit var nextCard: Card
+    lateinit var currentCard: Card
 
 
     init {
         createCards()
     }
+
 
     //shared preferences
 
