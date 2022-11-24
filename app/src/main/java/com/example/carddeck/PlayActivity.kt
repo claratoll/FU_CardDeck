@@ -1,11 +1,13 @@
 package com.example.carddeck
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 
 class PlayActivity : AppCompatActivity() {
 
@@ -22,10 +24,7 @@ class PlayActivity : AppCompatActivity() {
     private var points: Int = 0
     private var lives: Int = 5
 
-
     val deck = Deck
-
-    //   private lateinit var recyclerView: RecyclerView
 
 
 
@@ -33,13 +32,6 @@ class PlayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
-
-
-        /*recyclerView = findViewById(R.id.recyclerView)
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = CardsRecyclerAdapter(this, DataManager.cards)
-*/
 
 
         cardText = findViewById(R.id.currentCard)
@@ -50,23 +42,81 @@ class PlayActivity : AppCompatActivity() {
         largerButton = findViewById(R.id.largerButton)
         smallerButton = findViewById(R.id.smallerButton)
 
+
         cardImageView = findViewById(R.id.cardImageView)
+        cardImageView.setImageResource(Deck.cards[0].picture)
 
-        val currentCard = randomNextNumber()
 
+        //val currentCard = randomNextNumber()
+        cardText.text = "you have $points points"
+        livesLeft.text = "you have $lives lives left"
 
         largerButton.setOnClickListener {
-            playGame(2, currentCard)
+            checkWin()
+            deck.drawCard()
+            if (deck.currentCard.number > deck.nextCard.number){
+                points++
+                cardText.text = "you have $points points"
+            } else {
+                lives --
+                livesLeft.text = "you have $lives lives left"
+                if (lives == 0){
+                    startWinLostActivity()
+                }
+            }
+            cardImageView.setImageResource(deck.currentCard.picture)
+
         }
         smallerButton.setOnClickListener{
-            playGame(1, currentCard)
+            checkWin()
+            deck.drawCard()
+            if(deck.currentCard.number< deck.nextCard.number){
+                points++
+                cardText.text = "you have $points points"
+            }else{
+                lives--
+                livesLeft.text = "you have $lives lives left"
+                if (lives==0){
+                    startWinLostActivity()
+                }
+            }
+            cardImageView.setImageResource(deck.currentCard.picture)
         }
 
+       // val currentCard = deck.currentCard.number
+       // val nextCard = deck.nextCard.number
+
+        //fixa så den hämtar alla kort istället
+        //cardImageView.setImageResource(Deck.cards[currentCard].picture)
+
+       // showNextNumber.text = "the next value is $nextCard"
+    //    showAnswer.text = "the current value is $currentCard"
+
+        }
+
+
+
+
+    fun checkWin() {
+        if (deck.cards.size == 1)
+
+        {deck.newRound()
+
+            lives+2
+
+        }
+    }
+
+
+    fun startWinLostActivity() {
+        val intent = Intent(this, WinLostActivity::class.java)
+        startActivity(intent)
     }
 
     fun randomNextNumber(): Int { return (1..13).random() }
 
-    private fun playGame(number: Int, currentCard: Int){
+}
+   /* private fun playGame(number: Int, currentCard: Int){
 
         //start up game
         val startCard = randomNextNumber()
@@ -88,6 +138,8 @@ class PlayActivity : AppCompatActivity() {
         card = Deck.cards[currentCard]
 
         cardImageView.setImageResource(card.picture)
+        val number = card.number
+
 
         checkIfNextCardIsLargerOrSmaller(number, nextCard, currentCard)
 
@@ -120,12 +172,13 @@ class PlayActivity : AppCompatActivity() {
         livesLeft.text = "you have $lives lives left"
 
         //fixa så den hämtar alla kort istället
-        //cardImageView.setImageResource(Deck.cards[randomCardNumber].picture)
+        cardImageView.setImageResource(Deck.cards[currentCard].picture)
 
         showNextNumber.text = "the next value is $nextCard"
         showAnswer.text = "the current value is $currentCard"
 
 
-    }
+    }*/
 
-}
+
+

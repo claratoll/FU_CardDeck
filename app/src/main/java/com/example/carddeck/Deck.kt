@@ -3,14 +3,35 @@ package com.example.carddeck
 object Deck {
 
     val cards = mutableListOf<Card>()
+    private var garbageCards = mutableListOf<Card>()
     lateinit var nextCard: Card
     lateinit var currentCard: Card
 
 
     init {
         createCards()
+        cards.shuffle()
     }
 
+
+    fun drawCard():Card {
+        nextCard = cards.removeAt(0)
+        currentCard= cards[0]
+
+
+        garbageCards.add(currentCard)
+
+        return nextCard }
+
+
+    fun newRound(){
+        garbageCards.add(currentCard)
+        garbageCards.shuffle()
+
+        cards.addAll(garbageCards)
+
+        cards.shuffle()
+    }
 
     //shared preferences
 
