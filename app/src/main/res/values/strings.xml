@@ -5,7 +5,7 @@
     <string name="current_card">current card:</string>
     <string name="what_guess">What is your guess?</string>
     <string name="won_lost">You guessed correct</string>
-    <string name="finished_play_again">And you finished this round.</string>
+    <string name="finished_play_again">Your points were added to the leader board.</string>
     <string name="play_again">Do you want to play again?</string>
     <string name="smaller">smaller</string>
     <string name="larger">larger</string>
@@ -16,6 +16,5 @@
     <string name="add_another_player">Add another player</string>
     <string name="start_playing">start playing</string>
     <string name="edit_name">edit name</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

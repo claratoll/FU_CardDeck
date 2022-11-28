@@ -25,15 +25,10 @@ class WinLostActivity : AppCompatActivity() {
         yesButton = findViewById(R.id.yes_button)
         noButton = findViewById(R.id.no_button)
 
-        var bool = false
-        bool = intent.getBooleanExtra("result", bool)
+        val points = intent.getIntExtra("result", 0)
 
+        winLostText.text = "you got $points points"
 
-        if (bool){
-            winLostText.text = "You won!"
-        } else {
-            winLostText.text = "You lost!"
-        }
 
         yesButton.setOnClickListener {
             playAgain()
@@ -55,7 +50,6 @@ class WinLostActivity : AppCompatActivity() {
 
 
     private fun playAgain(){
-
         //i think this starts a new activity and dont delete the old info :/
         val intent = Intent(this, PlayActivity::class.java)
         startActivity(intent)
