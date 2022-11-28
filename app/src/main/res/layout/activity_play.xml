@@ -9,16 +9,18 @@
     tools:context=".PlayActivity">
 
 
-<ImageView
-android:id="@+id/cardImageView"
-android:layout_width="263dp"
-android:layout_height="226dp"
 
-android:layout_marginTop="100dp"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-app:srcCompat="@drawable/cardimage" />
+
+    <ImageView
+        android:id="@+id/cardImageView"
+        android:layout_width="263dp"
+        android:layout_height="226dp"
+
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cardimage" />
 
     <TextView
         android:id="@+id/currentCard"
@@ -32,47 +34,47 @@ app:srcCompat="@drawable/cardimage" />
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardImageView" />
 
-<TextView
-android:id="@+id/whatGuess"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginTop="20dp"
-android:text="@string/what_guess"
-android:textColor="@color/white"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/larger_smaller" />
+    <TextView
+        android:id="@+id/whatGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/what_guess"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/larger_smaller" />
 
-<TextView
-android:id="@+id/larger_smaller"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginTop="50dp"
-android:text="@string/larger_or_smaller"
-android:textColor="@color/white"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/currentCard" />
+    <TextView
+        android:id="@+id/larger_smaller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/larger_or_smaller"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentCard" />
 
-<Button
-android:id="@+id/largerButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginTop="30dp"
-android:layout_marginEnd="30dp"
-android:text="@string/larger"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/whatGuess" />
+    <Button
+        android:id="@+id/largerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/larger"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whatGuess" />
 
-<Button
-android:id="@+id/smallerButton"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="30dp"
-android:layout_marginTop="30dp"
-android:text="@string/smaller"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/whatGuess" />
+    <Button
+        android:id="@+id/smallerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/smaller"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whatGuess" />
 
     <TextView
         android:id="@+id/livesLeft"

@@ -14,13 +14,16 @@
         android:theme="@style/Theme.CardDeck"
         tools:targetApi="31">
         <activity
-            android:name="com.example.carddeck.WinLostActivity"
+            android:name=".CreateAndEditPlayerActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.carddeck.PlayActivity"
+            android:name=".WinLostActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.carddeck.MainActivity"
+            android:name=".PlayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
