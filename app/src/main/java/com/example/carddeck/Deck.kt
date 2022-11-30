@@ -23,7 +23,7 @@ object Deck {
 
         return nextCard }
 
-
+/*
     fun newRound(){
         garbageCards.add(currentCard)
         garbageCards.shuffle()
@@ -31,7 +31,7 @@ object Deck {
         cards.addAll(garbageCards)
 
         cards.shuffle()
-    }
+    }*/
 
     //shared preferences
 
