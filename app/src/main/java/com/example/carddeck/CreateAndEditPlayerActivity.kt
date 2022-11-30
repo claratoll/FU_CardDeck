@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
-const val STUDENT_POSITION_KEY = "STUDENT_POSITION"
+const val PLAYER_POSITION_KEY = "PLAYER_POSITION"
 const val POSITION_NOT_SET = -1
 
 
@@ -17,7 +17,7 @@ class CreateAndEditPlayerActivity : AppCompatActivity() {
 
     lateinit var saveButton: Button
     lateinit var startPlayingButton: Button
-    lateinit var addAnotherPlayerButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +27,9 @@ class CreateAndEditPlayerActivity : AppCompatActivity() {
         playerPointsTextView = findViewById(R.id.pointsTextView)
 
         saveButton = findViewById(R.id.saveButton)
-        addAnotherPlayerButton = findViewById(R.id.addAnotherPlayer)
         startPlayingButton = findViewById(R.id.startPlaying)
 
-        val playerPosition = intent.getIntExtra(STUDENT_POSITION_KEY, POSITION_NOT_SET)
+        val playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, POSITION_NOT_SET)
 
 
         if (playerPosition != POSITION_NOT_SET){
@@ -43,12 +42,19 @@ class CreateAndEditPlayerActivity : AppCompatActivity() {
                 addNewPlayer(playerPosition)
             }
         }
+
+        startPlayingButton.setOnClickListener{
+
+        }
+
+
     }
 
     fun displayPlayer (position : Int) {
         val player = Players.players[position]
 
         nameEditText.setText(player.playerName)
+        playerPointsTextView.setText(player.playerPoints)
     }
 
     fun addNewPlayer(position: Int){
@@ -56,10 +62,8 @@ class CreateAndEditPlayerActivity : AppCompatActivity() {
 
         val newPosition = position +1
 
-        val player = Player(name, newPosition, 0, 5)
-
+        val player = Player(name, newPosition, 0)
         Players.players.add(player)
-        finish()
     }
 
 

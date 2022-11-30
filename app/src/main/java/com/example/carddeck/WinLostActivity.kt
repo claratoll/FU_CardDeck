@@ -14,6 +14,7 @@ class WinLostActivity : AppCompatActivity() {
 
     private lateinit var yesButton : ImageView
     private lateinit var noButton : ImageView
+    private lateinit var leaderBoardButton : Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,7 @@ class WinLostActivity : AppCompatActivity() {
 
         yesButton = findViewById(R.id.yes_button)
         noButton = findViewById(R.id.no_button)
+        leaderBoardButton = findViewById(R.id.toLeaderBoardButton)
 
         val points = intent.getIntExtra("result", 0)
 
@@ -37,6 +39,10 @@ class WinLostActivity : AppCompatActivity() {
         noButton.setOnClickListener {
             quitGame()
         }
+
+        leaderBoardButton.setOnClickListener {
+            toLeaderBoard()
+        }
     }
 
 
@@ -48,12 +54,16 @@ class WinLostActivity : AppCompatActivity() {
 
     }
 
+    private fun toLeaderBoard(){
+        val intent = Intent(this, LeaderBoardActivity::class.java)
+        startActivity(intent)
+    }
+
 
     private fun playAgain(){
         //i think this starts a new activity and dont delete the old info :/
         val intent = Intent(this, PlayActivity::class.java)
         startActivity(intent)
-     //   finish()
     }
 
     private fun quitGame(){

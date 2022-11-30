@@ -22,6 +22,7 @@ class PlayActivity : AppCompatActivity() {
     private var points: Int = 0
 
     private val deck = Deck
+    private val player = Players
 
 
 
@@ -75,7 +76,6 @@ class PlayActivity : AppCompatActivity() {
                 startWinLostActivity(points)
             }
         }.start()
-
     }
 
     fun startWinLostActivity(result: Int) {
