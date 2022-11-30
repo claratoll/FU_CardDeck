@@ -19,10 +19,9 @@ class PlayActivity : AppCompatActivity() {
 
     private lateinit var cardImageView: ImageView
 
-    private var points: Int = 0
-
     private val deck = Deck
-    private val player = Players
+    //private val player = Players
+
 
 
 
@@ -39,30 +38,35 @@ class PlayActivity : AppCompatActivity() {
         cardImageView = findViewById(R.id.cardImageView)
         cardImageView.setImageResource(Deck.cards[0].picture)
 
-        cardText.text = "you have $points points"
+        val playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, POSITION_NOT_SET)
+
+        val player = Players.players[playerPosition]
+
+
 
 
         largerButton.setOnClickListener {
             deck.drawCard()
             if (deck.currentCard.number > deck.nextCard.number){
-                points++
-                cardText.text = "you have $points points"
+                player.playerPoints++
             } else {
-                points--
+                player.playerPoints--
             }
             cardImageView.setImageResource(deck.currentCard.picture)
+            cardText.text = "you have ${player.playerPoints.toString()} points"
         }
 
         smallerButton.setOnClickListener{
             deck.drawCard()
             if(deck.currentCard.number< deck.nextCard.number){
-                points++
-                cardText.text = "you have $points points"
-            }else{
-                points--
+                player.playerPoints++
+            } else {
+                player.playerPoints--
             }
             cardImageView.setImageResource(deck.currentCard.picture)
+            cardText.text = "you have ${player.playerPoints.toString()} points"
         }
+
 
 
         //timer
@@ -73,15 +77,16 @@ class PlayActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                startWinLostActivity(points)
+                startWinLostActivity()
             }
         }.start()
     }
 
-    fun startWinLostActivity(result: Int) {
+    fun startWinLostActivity() {
+
         val intent = Intent(this, WinLostActivity::class.java)
-        intent.putExtra("result", result)
         startActivity(intent)
+
     }
 }
 

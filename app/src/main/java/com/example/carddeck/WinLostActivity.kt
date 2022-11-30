@@ -27,9 +27,12 @@ class WinLostActivity : AppCompatActivity() {
         noButton = findViewById(R.id.no_button)
         leaderBoardButton = findViewById(R.id.toLeaderBoardButton)
 
-        val points = intent.getIntExtra("result", 0)
+        val playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, POSITION_NOT_SET)
 
-        winLostText.text = "you got $points points"
+        val player = Players.players[playerPosition]
+
+
+        winLostText.text = "you got ${player.playerPoints.toString()} points"
 
 
         yesButton.setOnClickListener {
@@ -55,6 +58,7 @@ class WinLostActivity : AppCompatActivity() {
     }
 
     private fun toLeaderBoard(){
+
         val intent = Intent(this, LeaderBoardActivity::class.java)
         startActivity(intent)
     }
