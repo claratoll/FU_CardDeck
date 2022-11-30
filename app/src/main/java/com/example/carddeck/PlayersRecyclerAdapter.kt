@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -40,8 +41,8 @@ class PlayersRecyclerAdapter (val context : Context, val players : List <Player>
 
         val playerNumberTextView = itemView.findViewById<TextView>(R.id.number_player_textView)
         val playerNameTextView = itemView.findViewById<TextView>(R.id.name_textView)
-        val pointsTextView = itemView.findViewById<TextView>(R.id.pointsTextView)
-        val editButton = itemView.findViewById<ImageButton>(R.id.edit_button)
+        val pointsTextView = itemView.findViewById<TextView>(R.id.points_textView)
+        val editButton = itemView.findViewById<Button>(R.id.edit_button)
         var playerPosition = 0
 
         init {

@@ -20,7 +20,6 @@ class LeaderBoardActivity : AppCompatActivity() {
         recyclerView.adapter = PlayersRecyclerAdapter(this, Players.players)
 
 
-
     }
 
 

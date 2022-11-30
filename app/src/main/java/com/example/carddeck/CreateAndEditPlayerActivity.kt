@@ -1,5 +1,6 @@
 package com.example.carddeck
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -44,7 +45,8 @@ class CreateAndEditPlayerActivity : AppCompatActivity() {
         }
 
         startPlayingButton.setOnClickListener{
-
+            val intent = Intent(this, PlayActivity::class.java)
+            startActivity(intent)
         }
 
 
