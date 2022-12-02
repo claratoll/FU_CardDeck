@@ -2,6 +2,7 @@ package com.example.carddeck
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class PlayersRecyclerAdapter (val context : Context, val players : List <Player>) : RecyclerView.Adapter<PlayersRecyclerAdapter.ViewHolder>() {
 
-
     val layoutInflater = LayoutInflater.from(context)
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = layoutInflater.inflate(R.layout.list_item, parent, false)
@@ -22,20 +21,16 @@ class PlayersRecyclerAdapter (val context : Context, val players : List <Player>
         return ViewHolder(itemView)
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val player = players[position]
 
-        holder.playerNumberTextView.text = player.playerNumber.toString()
+        holder.playerNumberTextView.text = position.toString()
         holder.playerNameTextView.text = player.playerName
         holder.pointsTextView.text = player.playerPoints.toString()
-
         holder.playerPosition = position
-
     }
 
     override fun getItemCount() = players.size
-
 
     inner class ViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView){
 

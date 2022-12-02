@@ -3,6 +3,7 @@ package com.example.carddeck
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +17,9 @@ class WinLostActivity : AppCompatActivity() {
     private lateinit var noButton : ImageView
     private lateinit var leaderBoardButton : Button
 
+    var playerPosition: Int = 0
+
+    private var player: Player? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +31,14 @@ class WinLostActivity : AppCompatActivity() {
         noButton = findViewById(R.id.no_button)
         leaderBoardButton = findViewById(R.id.toLeaderBoardButton)
 
-        val playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, POSITION_NOT_SET)
 
-        val player = Players.players[playerPosition]
+        playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, 0)
 
 
-        winLostText.text = "you got ${player.playerPoints.toString()} points"
+        player = Players.players[playerPosition]
+
+
+        winLostText.text = "you got ${player!!.playerPoints.toString()} points"
 
 
         yesButton.setOnClickListener {
@@ -49,24 +55,19 @@ class WinLostActivity : AppCompatActivity() {
     }
 
 
-    fun win (){
-
-    }
-
-    fun lost() {
-
-    }
-
     private fun toLeaderBoard(){
 
         val intent = Intent(this, LeaderBoardActivity::class.java)
+        intent.putExtra(PLAYER_POSITION_KEY, playerPosition)
         startActivity(intent)
     }
 
 
     private fun playAgain(){
-        //i think this starts a new activity and dont delete the old info :/
         val intent = Intent(this, PlayActivity::class.java)
+
+        intent.putExtra(PLAYER_POSITION_KEY, playerPosition++)
+
         startActivity(intent)
     }
 

@@ -23,17 +23,6 @@ object Deck {
 
         return nextCard }
 
-/*
-    fun newRound(){
-        garbageCards.add(currentCard)
-        garbageCards.shuffle()
-
-        cards.addAll(garbageCards)
-
-        cards.shuffle()
-    }*/
-
-    //shared preferences
 
     fun createCards(){
         //clubs

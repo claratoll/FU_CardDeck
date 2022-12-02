@@ -18,10 +18,7 @@ class LeaderBoardActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = PlayersRecyclerAdapter(this, Players.players)
-
-
     }
-
 
     override fun onResume() {
         super.onResume()

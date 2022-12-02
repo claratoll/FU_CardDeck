@@ -7,71 +7,70 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
+
 const val PLAYER_POSITION_KEY = "PLAYER_POSITION"
-const val POSITION_NOT_SET = -1
+const val POSITION_NOT_SET = 0
 
 
 class CreateAndEditPlayerActivity : AppCompatActivity() {
 
     lateinit var nameEditText: EditText
-    lateinit var playerPointsTextView: TextView
 
-    lateinit var saveButton: Button
-    lateinit var startPlayingButton: Button
+    var playerPosition: Int = 0
+    private var player: Player? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_and_edit_player)
 
-        nameEditText = findViewById(R.id.playerNameText)
-        playerPointsTextView = findViewById(R.id.pointsTextView)
+        nameEditText = findViewById(R.id.playerNameEditText)
 
-        saveButton = findViewById(R.id.saveButton)
-        startPlayingButton = findViewById(R.id.startPlaying)
+        val saveButton = findViewById<Button>(R.id.saveButton)
+        val startPlayingButton = findViewById<Button>(R.id.startPlaying)
 
-        val playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, POSITION_NOT_SET)
+
+        playerPosition = intent.getIntExtra(PLAYER_POSITION_KEY, playerPosition)
 
 
         if (playerPosition != POSITION_NOT_SET){
-            displayPlayer(playerPosition)
+            displayPlayer()
             saveButton.setOnClickListener {
-                editPlayer(playerPosition)
+                editPlayer()
             }
         } else {
             saveButton.setOnClickListener {
-                addNewPlayer(playerPosition)
+                addNewPlayer()
             }
         }
 
         startPlayingButton.setOnClickListener{
             val intent = Intent(this, PlayActivity::class.java)
+            intent.putExtra(PLAYER_POSITION_KEY, playerPosition)
             startActivity(intent)
         }
 
 
     }
 
-    fun displayPlayer (position : Int) {
-        val player = Players.players[position]
+    fun displayPlayer () {
+        player = Players.players[playerPosition]
 
-        nameEditText.setText(player.playerName)
-        playerPointsTextView.setText(player.playerPoints)
+        nameEditText.setText(player!!.playerName)
     }
 
-    fun addNewPlayer(position: Int){
+    fun addNewPlayer(){
         val name = nameEditText.text.toString()
 
-        val newPosition = position +1
+        val player = Player(name, 0)
 
-        val player = Player(name, newPosition, 0)
         Players.players.add(player)
+        finish()
     }
 
 
-    fun editPlayer(position: Int){
-        Players.players[position].playerName = nameEditText.text.toString()
-
+    fun editPlayer(){
+        Players.players[playerPosition].playerName = nameEditText.text.toString()
         finish()
     }
 }
